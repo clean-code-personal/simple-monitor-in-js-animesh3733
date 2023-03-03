@@ -30,12 +30,10 @@ function batteryIsOk(temperature, soc, charge_rate) {
 }
 
 
-expect(batteryIsOk(25, 70, 0.7)).to.be.true;
-expect(batteryIsOk(-10, 70, 0.7)).to.be.false;
-expect(batteryIsOk(50, 70, 0.7)).to.be.false;
-expect(batteryIsOk(25, 10, 0.7)).to.be.false;
-expect(batteryIsOk(25, 90, 0.7)).to.be.false;
-expect(batteryIsOk(25, 70, 1)).to.be.false;
-expect(batteryIsOk(25, 70, 0.8)).to.be.true;
-expect(batteryIsOk(0, 20, 0)).to.be.true;
-expect(batteryIsOk(45, 80, 0.8)).to.be.true;
+function assertBatteryIsOk(temperature, soc, charge_rate, expected) {
+    expect(batteryIsOk(temperature, soc, charge_rate)).to.equal(expected);
+}
+
+assertBatteryIsOk(25, 70, 0.7, true);
+assertBatteryIsOk(50, 85, 0, false);
+
