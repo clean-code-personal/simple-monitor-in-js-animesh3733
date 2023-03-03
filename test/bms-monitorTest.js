@@ -1,3 +1,5 @@
+import { batteryIsOk } from '../bms-monitor/bms-monitor.js';
+
 expect(batteryIsOk(25, 70, 0.7)).to.be.true;
 expect(batteryIsOk(-10, 70, 0.7)).to.be.false;
 expect(batteryIsOk(50, 70, 0.7)).to.be.false;
