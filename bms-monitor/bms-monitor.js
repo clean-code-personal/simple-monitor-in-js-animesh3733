@@ -1,10 +1,10 @@
 const { expect } = require('chai');
 
-function isOutOfRange(value, min, max) {
+export function isOutOfRange(value, min, max) {
     return value < min || value > max;
 }
 
-function batteryIsOk(temperature, soc, charge_rate) {
+export function batteryIsOk(temperature, soc, charge_rate) {
     const temperatureOutOfRange = isOutOfRange(temperature, 0, 45);
     const socOutOfRange = isOutOfRange(soc, 20, 80);
     const chargeRateOutOfRange = isOutOfRange(charge_rate, 0, 0.8);
