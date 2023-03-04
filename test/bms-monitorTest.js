@@ -1,5 +1,5 @@
 import { batteryIsOk } from '../bms-monitor/bms-monitor.js';
-const { expect } = require('chai');
+import { expect } from 'chai';
 
 expect(batteryIsOk(25, 70, 0.7)).to.be.true;
 expect(batteryIsOk(-10, 70, 0.7)).to.be.false;
