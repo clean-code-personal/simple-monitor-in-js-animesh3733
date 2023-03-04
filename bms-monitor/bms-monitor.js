@@ -1,25 +1,21 @@
-const { expect } = require('chai');
-
-export function isOutOfRange(value, min, max) {
-    return value < min || value > max;
+export function isOutOfRange(value, lowerLimit, upperLimit) {
+  return value < lowerLimit || value > upperLimit;
 }
 
 export function batteryIsOk(temperature, soc, charge_rate) {
-    const temperatureOutOfRange = isOutOfRange(temperature, 0, 45);
-    const socOutOfRange = isOutOfRange(soc, 20, 80);
-    const chargeRateOutOfRange = isOutOfRange(charge_rate, 0, 0.8);
-    
-    if (temperatureOutOfRange) {
-        console.log('Temperature is out of range!');
-    }
+  const parameters = [
+    { name: 'Temperature', value: temperature, lowerLimit: 0, upperLimit: 45 },
+    { name: 'State of Charge', value: soc, lowerLimit: 20, upperLimit: 80 },
+    { name: 'Charge rate', value: charge_rate, lowerLimit: 0, upperLimit: 0.8 }
+  ];
 
-    if (socOutOfRange) {
-        console.log('State of Charge is out of range!');
+  for (let parameter of parameters) {
+    if (isOutOfRange(parameter.value, parameter.lowerLimit, parameter.upperLimit)) {
+      console.log(`${parameter.name} is out of range!`);
+      return false;
     }
+  }
 
-    if (chargeRateOutOfRange) {
-        console.log('Charge rate is out of range!');
-    }
-
-    return !temperatureOutOfRange && !socOutOfRange && !chargeRateOutOfRange;
+  return true;
 }
+
