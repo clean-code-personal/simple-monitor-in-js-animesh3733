@@ -15,7 +15,6 @@ export function batteryIsOk(temperature, soc, charge_rate) {
       return false;
     }
   }
-
   return true;
 }
 
